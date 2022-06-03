@@ -161,7 +161,6 @@ $ rasa shell
 - /restart --> the restart the conversation without exiting rasa shell 
 
 ## Conclusion
-Rasa is great open source tool to build chatbot fast and esay. We can also implement adavance machine learning model our our own, instead of using the default one.
-
+Rasa is great open source tool to build chat-bot fast and easy. We can also implement advance machine learning model our our own, instead of using the default one.
 There's lot more in Rasa, all we done is scratch the surface, like actions, forms, rules, regex, synonyms, interactive learning, config files, pipelines, and so much more. But the thing covered till far will be more than enough to get to started.
 
