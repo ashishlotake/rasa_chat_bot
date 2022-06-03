@@ -1,0 +1,78 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: support support_team
+  steps:
+  - intent: support_team
+  - action: utter_support_team
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: give demo
+  steps:
+  - intent: apply
+  - action: utter_apply
+
+- rule: give discount info
+  steps:
+  - intent: discount
+  - action: utter_discount
+
+- rule: give course_structure
+  steps:
+  - intent: course_structure
+  - action: utter_course_structure
+
+- rule: give ai and ml
+  steps:
+  - intent: al_ml
+  - action: utter_al_ml
+
+- rule: give kids al_ml
+  steps:
+  - intent: kids_al_ml
+  - action: utter_kids_al_ml
+
+- rule: give fees
+  steps:
+  - intent: fees
+  - action: utter_fees
+
+- rule: give benefit_al_ml
+  steps:
+  - intent: benefit_al_ml
+  - action: utter_benefit_al_ml
+
+- rule: give teacher_student
+  steps:
+  - intent: teacher_student
+  - action: utter_teacher_student
+
+- rule: git coding_use_kids
+  steps:
+  - intent: coding_use_kids
+  - action: utter_coding_use_kids
+
+- rule: give online_learning
+  steps:
+  - intent: online_learning
+  - action: utter_online_learning
+
+- rule: give teacher_training
+  steps:
+  - intent: teacher_training
+  - action: utter_teacher_training
+
+- rule: give partner_superaip
+  steps:
+  - intent: partner_superaip
+  - action: utter_partner_superaip

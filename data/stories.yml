@@ -1,0 +1,89 @@
+version: "3.1"
+
+stories:
+
+- story: main story
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_contact_info
+  - intent: supply_contact_info
+    entities:
+      - name
+      - email
+  - action: utter_acknowledge_provided_info
+  - action: utter_ask_for_question
+  - intent: apply
+  - action: utter_apply
+  - intent: discount
+  - action: utter_discount
+  - intent: course_structure
+  - action: utter_course_structure
+  - intent: al_ml
+  - action: utter_al_ml
+  - intent: kids_al_ml
+  - action: utter_kids_al_ml
+  - intent: fees
+  - action: utter_fees
+  - intent: benefit_al_ml
+  - action: utter_benefit_al_ml
+  - intent: teacher_student
+  - action: utter_teacher_student
+  - intent: coding_use_kids
+  - action: utter_coding_use_kids
+  - intent: online_learning
+  - action: utter_online_learning
+  - intent: teacher_training
+  - action: utter_teacher_training
+  - intent: partner_superaip
+  - action: utter_partner_superaip
+
+- story: contact info
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_contact_info
+  - intent: supply_contact_info
+  - action: utter_acknowledge_provided_info
+
+- story: suppport team
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_contact_info
+  - intent: supply_contact_info
+  - action: utter_acknowledge_provided_info
+  - intent: support_team
+  - action: utter_support_team
+  - intent: apply
+  - action: utter_apply
+
+- story: story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_contact_info
+  - intent: supply_contact_info
+  - action: utter_acknowledge_provided_info
+  - action: utter_ask_for_question
+  - intent: discount
+  - action: utter_discount
+  - intent: apply
+  - action: utter_apply
+
+- story: story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_contact_info
+  - intent: supply_contact_info
+  - action: utter_acknowledge_provided_info
+  - action: utter_ask_for_question
+  - intent: teacher_training
+  - action: utter_teacher_training
+  - intent: online_learning
+  - action: utter_online_learning
+  - intent: partner_superaip
+  - action: utter_partner_superaip
+  - intent: apply
+  - action: utter_apply
