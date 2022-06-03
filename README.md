@@ -7,10 +7,10 @@
     3. It requires lots of training data
 2. Rule Based ChatBot
     1. In which you define rule what to say when user say something
-        1. eg: when user says **hi** ,bot whill replay with **welcome**
+        1. eg: when user says **hi** ,bot will replay with **welcome**
     2. Its faster than the pervious approach
 3. RASA, does both !
-    1. Fast, cause we can define rule for simple dialoug
+    1. Fast, cause we can define rule for simple dialogue
     2. Can learn from training data, to give specific reply 
 
 
