@@ -30,11 +30,16 @@
 
 4. To run my bot
     ```
-    $ rasa init
+    $ rasa shell
     ```
     *this will create a bot template in your current directory*
 
 >This method is for Linux/UNIX system
+
+5. To create your own bot
+    ```
+    $ rasa init
+    ```
 
 ## Lets understand file
 1. Intents, Entities, Slots and Responses
