@@ -12,7 +12,6 @@ stories:
       - name
       - email
   - action: utter_acknowledge_provided_info
-  - action: utter_ask_for_question
   - intent: apply
   - action: utter_apply
   - intent: discount
@@ -65,7 +64,6 @@ stories:
   - action: utter_ask_contact_info
   - intent: supply_contact_info
   - action: utter_acknowledge_provided_info
-  - action: utter_ask_for_question
   - intent: discount
   - action: utter_discount
   - intent: apply
@@ -78,7 +76,6 @@ stories:
   - action: utter_ask_contact_info
   - intent: supply_contact_info
   - action: utter_acknowledge_provided_info
-  - action: utter_ask_for_question
   - intent: teacher_training
   - action: utter_teacher_training
   - intent: online_learning

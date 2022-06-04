@@ -10,10 +10,13 @@ nlu:
     - Yeah sure. I'm [Barbara](name). My email is [barbara@email.com](email)
     - [Susan](name), [susan@email.com](email)
     - Sure. It's [Fred](name). My email is [fred@email.com](email).
-    - [ashish](name) [ashish@gmail.com](email)
-    - [dave](name)
-    - [sam@gmail.com](email)
+    - [Aditi](name) [aditi@gmail.com](email)
+    - [Save](name)
+    - [Sam@gmail.com](email)
     - [asc@mail.com](email) [ashish](name)
+    - [Murli](name) [murli@mail.com](email) 
+    - [Rohit](name) [rohit@jkfn.com]
+    - [Pranali](name) [pranli@frwf.com](email)
 
 - intent: support_team
   examples: |
@@ -74,6 +77,8 @@ nlu:
     - can i JUNIOR grade learn Machine learning
     - can i 8th class student learn Machine learning
     - can i 6th class student learn Machine learning
+    - can kids learn ai and ml
+    - kids learn artificial intelligence and machine learning
 
 - intent: fees
   examples: |

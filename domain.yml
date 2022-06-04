@@ -48,7 +48,7 @@ responses:
   - text: "I am happy to help you in this journey. May i know your name and email"
 
   utter_acknowledge_provided_info:
-  - text: "Thank {name} you for your response"
+  - text: "Thank you for your response and please write your question."
 
   utter_goodbye:
   - text: "Bye"
@@ -57,10 +57,7 @@ responses:
   - text: "I am a bot, powered by SuperAI."
 
   utter_support_team:
-  - text: "{name}, please contact our customer care for more information mail us at 'info@superaip.com' or call us at +918595912427"
-
-  utter_ask_for_question:
-  - text: "Please write your question."
+  - text: "please contact our customer care for more information mail us at 'info@superaip.com' or call us at +918595912427"
 
   utter_discount:
   - text: "Yes , we do have, please contact our customer care number for more details mail us at 'info@superaip.com' or call us at +918595912427"
