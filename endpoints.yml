@@ -41,6 +41,7 @@ action_endpoint:
 #  password: password
 #  queue: queue
 
+# to store this in sql database
 # tracker_store:
 #     type: SQL
 #     dialect: "postgresql"  # the dialect used to interact with the db

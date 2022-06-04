@@ -6,17 +6,6 @@ intents:
   - bot_challenge
   - supply_contact_info
   - support_team
-  - discount
-  - course_structure
-  - al_ml
-  - kids_al_ml
-  - fees
-  - benefit_al_ml
-  - teacher_student
-  - coding_use_kids
-  - online_learning
-  - teacher_training
-  - partner_superaip
   - apply
   
 entities:
@@ -42,58 +31,25 @@ slots:
 
 responses:
   utter_greet:
-  - text: "Hello and welcome to superai k-12 platform"
+  - text: "Hello"
 
   utter_ask_contact_info:
-  - text: "I am happy to help you in this journey. May i know your name and email"
+  - text: "May i know your name and email"
 
   utter_acknowledge_provided_info:
-  - text: "Thank you for your response and please write your question."
+  - text: "Thank you for your response and write your querry!"
 
   utter_goodbye:
   - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by SuperAI."
+  - text: "I am a bot, powered by Ashish."
 
   utter_support_team:
-  - text: "please contact our customer care for more information mail us at 'info@superaip.com' or call us at +918595912427"
-
-  utter_discount:
-  - text: "Yes , we do have, please contact our customer care number for more details mail us at 'info@superaip.com' or call us at +918595912427"
-
-  utter_course_structure:
-  - text: "Go to homepage, click on k-12 tab and there you can find the detailed course structure along with grade category or click here [click here](https://k12.superaip.com/)"
-
-  utter_al_ml:
-  - text: "Go to homepage and all details related to Artificial intelligence and Machine Learning is mentioned there or [click here](https://k12.superaip.com/local/highereducation/index.php)" 
-
-  utter_kids_al_ml:
-  - text: "Yes, junior grade students would be taught the content using blockly based programming"
-
-  utter_fees:
-  - text: "Under each course structure, course fee structure is given"
-
-  utter_benefit_al_ml:
-  - text: "It helps in creating thinking skills and breeds creativeness. It helps teach kids new strategies to solve problems easily. It helps in emotional intelligence and increases mental activity skills"
-
-  utter_teacher_student:
-  - text: "You can opt for 1:1 ratio and group classes at 1:5 teacher student is available"
-
-  utter_coding_use_kids:
-  - text: "At superaip we give students the exposure of subject integration project, which in turn enhance their understanding of other subject concepts and simultaneously their acquire the knowledge of coding and AI"
-
-  utter_online_learning:
-  - text: "Superaip is a totally online teaching platform. you can acquire the knowledge of ai and machine learning at the comfort of your home."
-
-  utter_teacher_training:
-  - text: "We do have a seperate teacher - partner plan, for more information kindly contact our customer care mail us @ 'info@superaip.com' or call us at +918595912427"
-
-  utter_partner_superaip:
-  - text: "For this information kindly contact our customer care mail us @ 'info@superaip.com' or call us at +918595912427"
+  - text: "please contact ashish at 'ashishlotake.pages.dev'"
   
   utter_apply:
-  - text: "To begin the process, you can request for a demo"
+  - text: "To begin the process, please visit ashishlotake.pages.dev"
 
 session_config:
   session_expiration_time: 60
