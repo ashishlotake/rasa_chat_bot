@@ -27,8 +27,6 @@ slots:
     - type: from_entity
       entity: email
 
-
-
 responses:
   utter_greet:
   - text: "Hello"
@@ -37,7 +35,7 @@ responses:
   - text: "May i know your name and email"
 
   utter_acknowledge_provided_info:
-  - text: "Thank you for your response and write your querry!"
+  - text: "Thank you {name} for your response and write your querry!"
 
   utter_goodbye:
   - text: "Bye"
@@ -46,10 +44,10 @@ responses:
   - text: "I am a bot, powered by Ashish."
 
   utter_support_team:
-  - text: "please contact ashish at 'ashishlotake.pages.dev'"
+  - text: "To read more please visit 'ashishlotake.pages.dev'"
   
   utter_apply:
-  - text: "To begin the process, please visit ashishlotake.pages.dev"
+  - text: "To read more please visit 'ashishlotake.pages.dev'"
 
 session_config:
   session_expiration_time: 60

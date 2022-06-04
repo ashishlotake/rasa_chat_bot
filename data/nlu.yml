@@ -30,11 +30,12 @@ nlu:
     
 - intent: apply
   examples: |
-    - apply
-    - apply for course
-    - i want to apply for 
-    - i want to apply for 
-    - demo
+    - author info
+    - writer information
+    - info
+    - information about author
+    - describe author
+    - describe writer
 
 - intent: greet
   examples: |
