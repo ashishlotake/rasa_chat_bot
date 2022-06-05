@@ -175,39 +175,31 @@ tracker_store:
 *In the above code just replace your `username` and `password` for your database user, and if your database is hosted on another server, then please do change the `url`*
 
 ## Filter the data received from SQL data base
+> check the jupyter-notebook for solution walkthrough 
+
 The data received in database, is unfiltered, we need to perform some data-cleaning, to make it more readable.
 
 *unfiltered data*
 ![img](./unfiltered_chat.png)
 ```
-def format_dataframe(csv_file, want_to_download_final_result=False):
-    '''
-    csv_file :- location of csv file same you do for pandas.read_csv()
-    just pass the data frame and it will reture a well formated and readable dataframe
-    
-    import pandas as pd
-    import json
-    
-    '''
-    df = pd.read_csv(csv_file) ## reading the file
-    df["data"] = df.data.apply(lambda x: json.loads(x)) ## converting string in dict to dict
-    df["timestamp"]= df["timestamp"].apply(lambda x : datetime.fromtimestamp(x).ctime()) ## timestamp to datetime
-    
-    def retrive_txt(c):
-        try:
-            return c["text"]
-        except:
-            return "NaN"
-    
-    df["text"]= df["data"].apply(retrive_txt)
-    final_df = df[df["text"] != "NaN"]
-    final_df = final_df.loc[:, final_df.columns != "data"]
-    if want_to_download_final_result == True:
-        final_df.to_csv("modifiled.csv")
-        
-    return final_df
+df = pd.read_csv("./events.csv") ## reading the file
+df["data"] = df.data.apply(lambda x: json.loads(x)) ## converting string to dict
+df["timestamp"]= df["timestamp"].apply(lambda x : datetime.fromtimestamp(x).ctime()) ## timestamp to datetime
 
-format_dataframe("./rasa_chat.csv", want_to_download_final_result=False)
+def retrive_txt(c):
+    '''
+    extract the message in "text" key from the dict
+    and for the rest just return NaN 
+    '''
+    try:
+        return c["text"]
+    except:
+        return "NaN"
+
+df["text"]= df["data"].apply(retrive_txt)
+final_df = df[df["text"] != "NaN"]
+final_df = final_df.loc[:, final_df.columns != "data"]
+final_df
 ```
 
 
