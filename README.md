@@ -157,6 +157,63 @@ $ rasa shell
 - /stop --> to exit from the conversation
 - /restart --> the restart the conversation without exiting rasa shell 
 
+##  To store this conversation to your SQL database
+
+`here i am using POSTGRES SQL, you can use preferred/supported database`
+- Add the below code at then end of `endpoints.yml` 
+```
+tracker_store:
+    type: SQL
+    dialect: "postgresql"  # the dialect used to interact with the db
+    url: localhost #(optional) host of the sql db, e.g. "localhost"
+    db: "rasa"  # path to your db
+    username: ""  # username used for authentication
+    password: ""  # password used for authentication
+    query: # optional dictionary to be added as a query string to the connection URL
+    driver: my-driver
+```
+*In the above code just replace your `username` and `password` for your database user, and if your database is hosted on another server, then please do change the `url`*
+
+## Filter the data received from SQL data base
+The data received in database, is unfiltered, we need to perform some data-cleaning, to make it more readable.
+
+*unfiltered data*
+![img](./unfiltered_chat.png)
+```
+def format_dataframe(csv_file, want_to_download_final_result=False):
+    '''
+    csv_file :- location of csv file same you do for pandas.read_csv()
+    just pass the data frame and it will reture a well formated and readable dataframe
+    
+    import pandas as pd
+    import json
+    
+    '''
+    df = pd.read_csv(csv_file) ## reading the file
+    df["data"] = df.data.apply(lambda x: json.loads(x)) ## converting string in dict to dict
+    df["timestamp"]= df["timestamp"].apply(lambda x : datetime.fromtimestamp(x).ctime()) ## timestamp to datetime
+    
+    def retrive_txt(c):
+        try:
+            return c["text"]
+        except:
+            return "NaN"
+    
+    df["text"]= df["data"].apply(retrive_txt)
+    final_df = df[df["text"] != "NaN"]
+    final_df = final_df.loc[:, final_df.columns != "data"]
+    if want_to_download_final_result == True:
+        final_df.to_csv("modifiled.csv")
+        
+    return final_df
+
+format_dataframe("./rasa_chat.csv", want_to_download_final_result=False)
+```
+
+
+*filtered messages*
+![img](./filter_conversation.png)
+
 ## Conclusion
  Rasa is a great open-source tool to build chatbots fast and easy. We can also implement advanced machine learning models on our own, instead of using the default one.
 There’s a lot more in Rasa, all we have done is scratch the surface, like actions, forms, rules, regex, synonyms, interactive learning, config files, pipelines, and so much more. But the thing covered till far will be more than enough to get started. 
