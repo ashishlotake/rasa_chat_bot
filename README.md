@@ -153,7 +153,7 @@ $ rasa train --fixed-model-name chat_bot
 ```
 $ rasa shell
 ```
-![imag](./rasa_shell_2.png)
+![imag](./rasa_pic.png)
 - /stop --> to exit from the conversation
 - /restart --> the restart the conversation without exiting rasa shell 
 
