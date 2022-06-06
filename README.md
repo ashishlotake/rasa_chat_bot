@@ -2,87 +2,55 @@
 
 [![website](https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fashishlotake.pages.dev%2F)](https://ashishlotake.pages.dev/)
 
-## First lets breifly understand what are chatbot and type of chatbot
-1. Conversational AI, which can talk to you like there is a human on the other side. But this type of bot have some limitation
-    1. It has to construct all the words from the root up, and then form a sentence which is grammatically correct.
-    2. Its slow. YES! It has to perform all the process in live time. So this is not the type of bot you want your company to use.
-    3. It requires lots of training data
-2. Rule Based ChatBot
-    1. In which you define rule what to say when user say something
-        1. eg: when user says **hi** ,bot will replay with **welcome**
-    2. Its faster than the pervious approach
-3. RASA, does both !
-    1. Fast, cause we can define rule for simple dialogue
-    2. Can learn from training data, to give specific reply 
+##  Let's broadly classify different types of chatbots:
 
+1. **Full Fledge Conversational ChatBot**:- this is a slow chatbot that generates text and gives grammatically correct sentences. The idea is excellent, but this is not what we want in production, because we want to solve user queries asap. And it required lots of training data. (which is difficult to get)
+2. **Rule-based ChatBot**:- This is a simple yet super fast chatbot, in this, we define a set of rules for a bot to reply based on user response. But it's kind of dumb chatbot if it encounters something out of a defined parameter. It may crash or won't reply.
+3. **Conversational ChatBot + Rule-based ChatBot = RASA** :- Rasa can do both. It's fast because we can define rules for simple dialogue. Can learn from training data, to give a specific reply. This is what we want so our customers can have their queries resolved asap, without human intervention.
 
-## Follow this to get started 
-1. Create a virtual environment for python
-    ```
-    $ python3 -m venv /venv/rasa_venv
-    ```
-3. Then 
-    ```
-    $ git clone https://github.com/ashishlotake/rasa_chat_bot.git
-    ```
-3. Then install RASA and Flask
-    ```
-    $ pip3 install rasa && pip3 install flask && pip3 install requests
-    ```
+##  Let's get 
+- Create a virtual environment for python and activate 
+- Install 
+- rasa init *(this will create a layout for creating your bot)*
+```
+$ python3 -m venv /venv/rasa_venv
+$ source /venv/rasa_venv/bin/activate
+$ pip3 install rasa 
+$ rasa init
+``` 
+##  Let's briefly understand the input of 
 
-4. To run my bot
-    ```
-    $ rasa shell
-    ```
-    *this will create a bot template in your current directory*
-
-
-5. To create your own bot
-    ```
-    $ rasa init
-    ```
-
-##  Let's briefly understand the input of files 
-- Intents --> its like what the user is implying
-    - eg ->     Good Morning! *or* Hi! *or* Hey! *or* Hello.
-    then we can group this one category say `greet`
-- Entities --> piece of information that can be extracted from user message
-    - eg -> user -> my `name` is ashish and my `mail` is ashish@gmail.com *name and the email these can be extracted as `entities`*
-- Slots -> Now that we have extracted a piece from user message, now need to store it into a variable (`slot`) so we can use this in further conversation .
-- Responses -> As we have read about rule based chatbot, define what bot will say when the user says something.
-    - user -> hi
-    - bot -> Welcome, may i know your name
-
-
-##  Let's briefly understand each file use 
-
-- nlu.yml - this house all the NLU training data, for model training.
+- Intents → is like what the user is 
+- Entities → pieces of information that can be extracted from the user 
+- Slots → Now that we have extracted a piece from the user message, now need to store it into a variable (`slot`) so we can use this in further 
+- Responses → As we have read about the rule-based chatbots, define what the bot will say when the user says something. This is similar, we define bots' responses.
+## Let's briefly understand each file 
+- *nlu.yml* - this houses all the NLU training data, for model training.
 ```
 nlu:
-- intent: greet
-examples: |
+ - intent: greet
+ examples: |
     - hi
     - welcome
     - good morning 
     - good evening 
     - hello 
-- intent: goodbye
-examples: | 
+ - intent: goodbye
+ examples: | 
     - bye 
     - goodbye
 ```
-
-- rules.yml - these are rules, which we specific, like what bot will be when the user says goodbye
-
-```rules:
-- rule: Say goodbye anytime the user says goodbye
-    steps:
-    - intent: goodbye
-    - action: utter_goodbye
+- *rules.yml* - these are rules, which we specific, like what bot will be when the user says goodbye
 ```
-- domain.yml - this house all the info of the intent, bot response, slots, and entities.
-
-```intents:
+rules:
+ - rule: Say goodbye anytime the user says goodbye
+     steps:
+     - intent: goodbye
+     - action: utter_goodbye
+```
+- *domain.yml* - this house all the info of the intent, bot response, slots, and entities.
+```
+intents:
    greet
    goodbye
 entities:
@@ -94,12 +62,11 @@ responses:
    utter_acknowledge_provided_info:
    - text: “Thank you {name} for your response and write your querry!”
    utter_goodbye:
-   - text: “Goodbye”
+   - text: “Goodbye"
 ```
-
-- stories.yml - this is like the flow of conversation, so the bot can learn the flow of conversation.
-
-```stories:
+- *stories.yml* - this is like the flow of conversation, so the bot can learn the flow of conversation.
+```
+stories:
   - story: greet_user
   steps:
   - intent: greet
@@ -109,60 +76,43 @@ responses:
      - email
   - action: utter_acknowledge_provided_info
 ```
+##  Let's see the bot in action
 
-## Lets see a sample chat to make the understand concrete
-
+![rasa_pic.png](./rasa_pic.png)
+###  Let's understand what's happening under the hood 
+ 
 ```
-user: hi
+user -> hi
 ```
-`bot classify this a greet intent and then make the suitable response`
+*hereafter user replay bot, classify this as "greet" intent and then ask for info*
 ```
-bot:  Hello !May I know your name and email.
+bot -> Hello !May I know your name and email? 
+user -> Dave harley@davidson.com
 ```
-`bot extract the name and email entity from user message and save then in name and email slots`
+*hereafter the user gave his name and the email bot acknowledges the user and asks the user for his/her query*
 ```
-user: Dave harley@davidson.com
+bot -> Thank Dave you for your response write your query!
+user -> are you a bot
 ```
-`then bot acknowledges the user for his response`
+*user asks for "bot/human check", then the bot gives an appropriate response*
 ```
-bot: Thank Dave you for your response write your querry!
-user: Are you a bot
-```
-`user asks for "bot/human check", then the bot gives an appropriate response`
-```
-bot -> I am bot, powered by Ashish
+bot -> I am a bot, powered by Ashish
 user -> about author
 ```
-` user asks about the author, it gives the author's website `
+*user asks about the author, it gives the author's [website](https://ashishlotake.pages.dev/)*
 ```
-user: bye
-bot: bye
+bot -> To read more please visit ashishlotake.pages.dev
+user -> Bye
+bot -> Bye
 ```
-` we have defined a rule when the user says "Bye", the bot reply "Bye" `
-
-
-I can explain, and tell what I have done, but I can't do a better job than the [RASA DOCS](https://rasa.com/docs/rasa/), so please refer this for further explanation.
-
-## After creating the training data train the model
-
+*We have defined a rule when the user says "Bye", the bot replies*
+- ***/stop*** - *To stop/end the*
+- ***/restart*** - *restart the conversation without leaving the rasa shell.*
+##  Now I guess you want to keep your customer chat saved! 
+We will be using opensource Postgres SQL to save our chat records 
+- just add the following code at the end of your endpoint.yml
 ```
-$ rasa train --fixed-model-name chat_bot
-```
-- This will train the bot and save the trained model with name `chat_bot` and in the `/model` directory
-- Now that we have trained model, run the chatbot in terminal
-```
-$ rasa shell
-```
-![imag](./rasa_pic.png)
-- /stop --> to exit from the conversation
-- /restart --> the restart the conversation without exiting rasa shell 
-
-##  To store this conversation to your SQL database
-
-`here i am using POSTGRES SQL, you can use preferred/supported database`
-- Add the below code at then end of `endpoints.yml` 
-```
-tracker_store:
+tracker_store
     type: SQL
     dialect: "postgresql"  # the dialect used to interact with the db
     url: localhost #(optional) host of the sql db, e.g. "localhost"
@@ -170,21 +120,20 @@ tracker_store:
     username: ""  # username used for authentication
     password: ""  # password used for authentication
     query: # optional dictionary to be added as a query string to the connection URL
-    driver: my-driver
+    driver: my-driver:
 ```
-*In the above code just replace your `username` and `password` for your database user, and if your database is hosted on another server, then please do change the `url`*
+*In the above code just replaces your **username** and **password** for your database user, and if your database is **hosted on another server**, then please do **change** the **URL** also.*
+##  Data PreProcessing 
+*The data that is stored in the database is unfiltered, so we need to perform some data pre-processing to make it more readable.*
 
-## Filter the data received from SQL data base
-> check the jupyter-notebook for solution walkthrough 
-
-The data received in database, is unfiltered, we need to perform some data-cleaning, to make it more readable.
-
-*unfiltered data*
-![img](./unfiltered_chat.png)
+![unfiltered_chat.png](./unfiltered_chat.png)
 ```
-df = pd.read_csv("./events.csv") ## reading the file
-df["data"] = df.data.apply(lambda x: json.loads(x)) ## converting string to dict
+df = pd.read_csv("./events.csv") ## reading the csv file
+
+df["data"] = df.data.apply(lambda x: json.loads(x)) ## string to dict
+
 df["timestamp"]= df["timestamp"].apply(lambda x : datetime.fromtimestamp(x).ctime()) ## timestamp to datetime
+
 
 def retrive_txt(c):
     '''
@@ -196,17 +145,20 @@ def retrive_txt(c):
     except:
         return "NaN"
 
+
 df["text"]= df["data"].apply(retrive_txt)
+
 final_df = df[df["text"] != "NaN"]
+
 final_df = final_df.loc[:, final_df.columns != "data"]
+
 final_df
 ```
 
-
-*filtered messages*
-![img](./filter_conversation.png)
-
+![filter_conversation.png](./filter_conversation.png)
 ## Conclusion
+
  Rasa is a great open-source tool to build chatbots fast and easy. We can also implement advanced machine learning models on our own, instead of using the default one.
-There’s a lot more in Rasa, all we have done is scratch the surface, like actions, forms, rules, regex, synonyms, interactive learning, config files, pipelines, and so much more. But the thing covered till far will be more than enough to get started. 
+
+There’s a lot more in Rasa, all we have done is scratch the surface, like actions, forms, rules, regex, synonyms, interactive learning, config files, pipelines, and so much more. But the thing covered till far will be more than enough to get started.
 
