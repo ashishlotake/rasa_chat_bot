@@ -1,6 +1,6 @@
 # General Q&A ChatBot
 
-[![website](https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fashishlotake.pages.dev%2F)](https://ashishlotake.pages.dev/)
+[![website](https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fashishlotake.pages.dev%2F)](https://ashishlotake.com/)
 
 ##  Let's broadly classify different types of chatbots:
 
